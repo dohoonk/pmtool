@@ -1,0 +1,6 @@
+<% @tasks.each do |f| %>
+  <div>
+    <%= link_to f.title, task_path(f) %>
+    <%= f.due_date %>
+  </div>
+<% end  %>

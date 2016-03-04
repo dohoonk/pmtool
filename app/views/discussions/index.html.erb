@@ -1,0 +1,9 @@
+<h1>Discussions</h1>
+<% @discussions.each do |f| %>
+  <div>
+    <%= link_to f.title, discussion_path(f) %>
+    <%= f.body %>
+    <%= link_to "Edit", edit_discussion_path(f) %>
+    <%= link_to "Delete", discussion_path(f), method: :delete, data: {confirm: "Are you sure?"} %>
+  </div>
+<% end %>

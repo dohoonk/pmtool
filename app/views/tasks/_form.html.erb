@@ -1,0 +1,15 @@
+<%= form_for [@project,@task] do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+  <div>
+    <%= f.label :due_date %>
+    <%= f.date_field :due_date %>
+  </div>
+  <%= f.submit %>
+<% end  %>

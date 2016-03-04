@@ -1,0 +1,11 @@
+<h1>User Profile</h1>
+<div>
+  <%= link_to current_user.first_name, edit_user_path(current_user) %>
+  <br>
+  <%= current_user.last_name %>
+  <br>
+  <%= current_user.email %>
+</div>
+<div>
+  <%= link_to "Change Password", user_password_path, method: :post %>
+</div>

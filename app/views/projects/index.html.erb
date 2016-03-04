@@ -1,0 +1,7 @@
+<% @projects.each do |f| %>
+<div>
+<%= link_to f.title, project_path(f) %>
+<%= f.description %>
+<%= f.due_date %>
+<div>
+<% end %>

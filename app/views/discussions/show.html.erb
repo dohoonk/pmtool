@@ -1,0 +1,16 @@
+<h1>Discussion: <%= @discussion.title %></h1>
+<hr>
+
+<div>
+  <%= @discussion.body %>
+</div>
+<hr>
+<div>
+  <%= link_to "Comment", new_discussion_comment_path(@discussion) %>
+</div>
+<hr>
+<div>
+  <% @comments.each do |f| %>
+    <%= f.body %>
+  <% end %>
+</div>

@@ -1,0 +1,10 @@
+<div>
+<%= @task.title %>
+<br>
+<%= @task.due_date %>
+</div>
+
+<div>
+<%= link_to "Edit", edit_project_task_path(@task,@project) %>
+<%= link_to "Delete", project_task_path(@task,@project), method: :delete, data: {confirm: "Are you sure?"} %>
+</div>

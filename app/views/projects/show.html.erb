@@ -1,0 +1,65 @@
+<div>
+  <h1><%= @project.title %><h1>
+  <br>
+  <%= @project.description %>
+  <br>
+  <%= @project.due_date %>
+</div>
+
+<div>
+  <%= link_to "Edit", edit_project_path(@project) %>
+  <br>
+  <%= link_to "Delete", project_path(@project), method: :delete, data:{confirm: "Are you sure?"}%>
+</div>
+
+<div>
+  <%= link_to "Add Tasks", new_project_task_path(@project) %>
+</div>
+<hr>
+
+<div>
+  <h4>Finished Tasks</h4>
+  <% @tasks.each do |f| %>
+    <% if f.done %>
+      <div>
+        <%= link_to f.title, project_task_path(@project,f) %>
+        <br>
+        <%= f.body %>
+        <br>
+        <%= f.due_date %>
+        <br>
+        <% if f.done %>
+          <%= link_to "Not done", project_task_done_path(@project,f), method: :patch %>
+        <% else %>
+          <%= link_to "done", project_task_done_path(@project,f), method: :patch %>
+        <% end %>
+        <br>
+        <%= link_to "Delete", project_task_path(@project,f), method: :delete, data: {confirm: "Are you sure?"} %>
+        <hr>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <h4>Unfinished Tasks</h4>
+  <% @tasks.each do |f| %>
+    <% if !f.done %>
+      <div>
+        <%= link_to f.title, project_task_path(@project,f) %>
+        <br>
+        <%= f.body %>
+        <br>
+        <%= f.due_date %>
+        <br>
+        <% if f.done %>
+          <%= link_to "Not done", project_task_done_path(@project,f), method: :patch %>
+        <% else %>
+          <%= link_to "done", project_task_done_path(@project,f), method: :patch %>
+        <% end %>
+        <br>
+        <%= link_to "Delete", project_task_path(@project,f), method: :delete, data: {confirm: "Are you sure?"} %>
+        <hr>
+      </div>
+    <% end %>
+  <% end %>
+</div>
