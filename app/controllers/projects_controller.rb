@@ -25,10 +25,12 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find params[:id]
+    redirect_to root_path, alert: "access denied" && return unless can? :edit, @project
   end
 
   def update
     @project = Project.find params[:id]
+    redirect_to root_path, alert: "access denied" && return unless can? :update, @project
     params_project = params.require(:project).permit(:title,:description,:due_date)
     @project.update params_project
     if @project.save
@@ -40,7 +42,8 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project = Project.find params[:id]
+    redirect_to root_path, alert: "access denied" && return unless can? :destroy, @project
     @project.destroy
-    redirect_to projects_path
+    redirect_to root_path
   end
 end

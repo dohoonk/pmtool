@@ -19,11 +19,14 @@ class CommentsController < ApplicationController
 
   def edit
     find_comment
+    find_discussion
+    redirect_to root_path, alert: "access deined" && return unless can? :edit, @comment
   end
 
   def update
     find_discussion
     find_comment
+    redirect_to root_path, alert: "access denied" && return unless can? :update, @comment
     if @comment.update params_comment
       redirect_to discussion_path(@discussion)
     else
@@ -32,7 +35,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    find_discussion
     find_comment
+    redirect_to root_path, alert: "access denied" && return unless can? :destroy, @comment
     @comment.destroy
     redirect_to discussion_path(@discussion)
   end

@@ -24,9 +24,11 @@ class DiscussionsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path, alert: "access denied" unless can? :edit, @discussion
   end
 
   def update
+    redirect_to root_path, alert: "access denied" unless can? :update, @discussion
     if @discussion.update params_discussion
       redirect_to discussions_path(@discussion)
     else
@@ -35,6 +37,7 @@ class DiscussionsController < ApplicationController
   end
 
   def destroy
+    redirect_to root_path, alert: "access denied" unless can? :destroy, @discussion
     @discussion.destroy
     redirect_to discussions_path
   end

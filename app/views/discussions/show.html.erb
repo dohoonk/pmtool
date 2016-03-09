@@ -12,5 +12,9 @@
 <div>
   <% @comments.each do |f| %>
     <%= f.body %>
+    <% if can? :edit, f %>
+      <%= link_to "Edit", edit_discussion_comment_path(@discussion,f) %>
+      <%= link_to "Delete", discussion_comment_path(@discussion,f), method: :delete %>
+    <% end %>
   <% end %>
 </div>
