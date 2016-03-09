@@ -9,4 +9,7 @@ class User < ActiveRecord::Base
   has_many :discussions, dependent: :destroy
   has_many :comments
 
+  has_many :favourite_projects, dependent: :destroy
+  has_many :fav_projects, through: :favourite_projects, source: :favourite_projects
+
 end
