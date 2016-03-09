@@ -10,6 +10,11 @@
   <%= link_to "Edit", edit_project_path(@project) %>
   <br>
   <%= link_to "Delete", project_path(@project), method: :delete, data:{confirm: "Are you sure?"}%>
+  <br>
+  <%= link_to "Favourite", project_favourite_projects_path(@project), method: :POST %>
+  <br>
+  <%= link_to "Unfavourite", project_favourite_project_path(@project,@favourite_project), method: :delete %>
+  <hr>
 </div>
 
 <div>

@@ -17,5 +17,9 @@ Rails.application.routes.draw do
   post "/user/password" => "users#password", as: 'user_password'
   patch "/user/password_update" => "users#password_update", as: 'update_user_password'
 
+  resources :projects do
+    resources :favourite_projects, only: [:create,:destroy]
+  end
+
   root "home#index"
 end

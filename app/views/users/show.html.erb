@@ -9,3 +9,11 @@
 <div>
   <%= link_to "Change Password", user_password_path, method: :post %>
 </div>
+
+<h2>Favourite Projects</h2>
+<% @favourite_projects.each do |f| %>
+<%= f.project.title %>
+<%= link_to f.project.title, project_path(f.project) %>
+<br>
+<% end %>
+<hr>
