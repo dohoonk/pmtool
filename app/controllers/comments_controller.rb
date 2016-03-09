@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
     @comment.discussion_id = @discussion.id
     @comment.user_id = current_user.id
     if @comment.save
+      CommentsMailer.notify_discussion_owner(@comment).deliver_now
       redirect_to discussion_path(@discussion)
     else
       render :new

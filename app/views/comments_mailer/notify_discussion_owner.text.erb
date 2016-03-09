@@ -1,0 +1,5 @@
+Hello <%= @discussion.user.first_name %>,
+<%= @user.first_name.capitalize %> has just liked your post titled: <%= @discussion.title %>.
+Click <%= link_to "here", discussion_url(@discussion) %> to view your post.
+Regards,
+Awesome Posts Team
