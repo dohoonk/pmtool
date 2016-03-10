@@ -1,0 +1,16 @@
+<div>
+  <%= link_to f.title, project_task_path(f.project_id,f) %>
+  <br>
+  <%= f.body %>
+  <br>
+  <%= f.due_date %>
+  <br>
+  <% if f.done %>
+    <%= link_to "Not done", project_task_done_path(f.project_id,f), method: :patch %>
+  <% else %>
+    <%= link_to "done", project_task_done_path(f.project_id,f), method: :patch %>
+  <% end %>
+  <br>
+  <%= link_to "Delete", project_task_path(f.project_id,f), method: :delete, data: {confirm: "Are you sure?"} %>
+  <hr>
+</div>

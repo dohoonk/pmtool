@@ -12,10 +12,14 @@ class TasksController < ApplicationController
     params_task = params.require(:task).permit(:title,:due_date,:body,:project_id,:done)
     @task = Task.new params_task
     @task.project_id = params[:project_id]
-    if @task.save
-      redirect_to project_path(params[:project_id])
-    else
-      render :new
+    respond_to do |format|
+      if @task.save
+        format.html {redirect_to project_path(params[:project_id])}
+        format.js {render :create_success}
+      else
+        format.html {render :new}
+        format.js {render :create_failure}
+      end
     end
   end
 

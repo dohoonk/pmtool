@@ -18,53 +18,24 @@
 </div>
 
 <div>
-  <%= link_to "Add Tasks", new_project_task_path(@project) %>
+  <!-- <% link_to "Add Tasks", new_project_task_path(@project) %> -->
+  <%= render "/tasks/form" %>
 </div>
 <hr>
 
-<div>
+<div id="finished-tasks">
   <h4>Finished Tasks</h4>
   <% @tasks.each do |f| %>
     <% if f.done %>
-      <div>
-        <%= link_to f.title, project_task_path(@project,f) %>
-        <br>
-        <%= f.body %>
-        <br>
-        <%= f.due_date %>
-        <br>
-        <% if f.done %>
-          <%= link_to "Not done", project_task_done_path(@project,f), method: :patch %>
-        <% else %>
-          <%= link_to "done", project_task_done_path(@project,f), method: :patch %>
-        <% end %>
-        <br>
-        <%= link_to "Delete", project_task_path(@project,f), method: :delete, data: {confirm: "Are you sure?"} %>
-        <hr>
-      </div>
+      <%= render "/tasks/task", f: f%>
     <% end %>
   <% end %>
 </div>
-<div>
+<div id="unfinished-tasks">
   <h4>Unfinished Tasks</h4>
   <% @tasks.each do |f| %>
     <% if !f.done %>
-      <div>
-        <%= link_to f.title, project_task_path(@project,f) %>
-        <br>
-        <%= f.body %>
-        <br>
-        <%= f.due_date %>
-        <br>
-        <% if f.done %>
-          <%= link_to "Not done", project_task_done_path(@project,f), method: :patch %>
-        <% else %>
-          <%= link_to "done", project_task_done_path(@project,f), method: :patch %>
-        <% end %>
-        <br>
-        <%= link_to "Delete", project_task_path(@project,f), method: :delete, data: {confirm: "Are you sure?"} %>
-        <hr>
-      </div>
+      <%= render "/tasks/task", f: f %>
     <% end %>
   <% end %>
 </div>

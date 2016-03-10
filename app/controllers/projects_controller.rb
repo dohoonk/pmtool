@@ -20,6 +20,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find params[:id]
+    @task = Task.new
     @tasks = Task.where("project_id = ?", params[:id])
     @favourite_project = FavouriteProject.where(["project_id = ? AND user_id = ?", @project.id, current_user.id])
   end
