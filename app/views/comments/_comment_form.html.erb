@@ -1,0 +1,7 @@
+<%= form_for [@discussion,@comment],remote: true do |f| %>
+  <div>
+    <%= f.label :body %>
+    <%= f.text_field :body %>
+  </div>
+  <%= f.submit %>
+<% end %>

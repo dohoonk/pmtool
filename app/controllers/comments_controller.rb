@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+before_action :authenticate!, except:[:show]
   def new
     find_discussion
     @comment = Comment.new
@@ -10,11 +10,15 @@ class CommentsController < ApplicationController
     @comment = Comment.new params_comment
     @comment.discussion_id = @discussion.id
     @comment.user_id = current_user.id
-    if @comment.save
-      CommentsMailer.notify_discussion_owner(@comment).deliver_now
-      redirect_to discussion_path(@discussion)
-    else
-      render :new
+    respond_to do |format|
+      if @comment.save
+        CommentsMailer.notify_discussion_owner(@comment).deliver_now
+        format.html {redirect_to discussion_path(@discussion)}
+        format.js {render :create_success}
+      else
+        format.html {render :new}
+        format.js {render :create_failure}
+      end
     end
   end
 

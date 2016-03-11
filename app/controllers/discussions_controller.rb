@@ -20,6 +20,7 @@ class DiscussionsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @comments = Comment.where("discussion_id = ?", @discussion.id)
   end
 
@@ -37,7 +38,7 @@ class DiscussionsController < ApplicationController
   end
 
   def destroy
-    redirect_to root_path, alert: "access denied" unless can? :destroy, @discussion
+    redirect_to root_path, alert: "access denied" && return unless can? :destroy, @discussion
     @discussion.destroy
     redirect_to discussions_path
   end

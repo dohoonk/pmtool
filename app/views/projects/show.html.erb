@@ -13,29 +13,36 @@
   <br>
   <%= link_to "Favourite", project_favourite_projects_path(@project), method: :POST %>
   <br>
-  <%= link_to "Unfavourite", project_favourite_project_path(@project,@favourite_project), method: :delete %>
+  <% if user_signed_in? %>
+    <%= link_to "Unfavourite", project_favourite_project_path(@project,@favourite_project), method: :delete %>
+  <% end %>
   <hr>
 </div>
 
-<div>
+<div id="task-form">
   <!-- <% link_to "Add Tasks", new_project_task_path(@project) %> -->
   <%= render "/tasks/form" %>
 </div>
 <hr>
 
-<div id="finished-tasks">
+<div>
   <h4>Finished Tasks</h4>
-  <% @tasks.each do |f| %>
-    <% if f.done %>
-      <%= render "/tasks/task", f: f%>
+  <div id="finished-tasks">
+    <% @tasks.each do |f| %>
+      <% if f.done %>
+        <%= render "/tasks/task", f: f%>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
-<div id="unfinished-tasks">
+
+<div>
   <h4>Unfinished Tasks</h4>
-  <% @tasks.each do |f| %>
-    <% if !f.done %>
-      <%= render "/tasks/task", f: f %>
+  <div id="unfinished-tasks">
+    <% @tasks.each do |f| %>
+      <% if !f.done %>
+        <%= render "/tasks/task", f: f %>
+      <% end %>
     <% end %>
-  <% end %>
+</div>
 </div>
